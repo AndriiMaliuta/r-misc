@@ -2,8 +2,8 @@
 
 https://hevodata.com/learn/rpostgresql/#step1
 
-RPostgreSQL Method	RPostgreSQL Method Description
-dbDriver(drv, …)	Instantiates the driver object.
+|| RPostgreSQL || Method	|| RPostgreSQL || Method Description ||
+| dbDriver(drv, …)	| Instantiates the driver object.
 dbConnect(drv,…) 	Creates and establishes a connection to the database that the driver drv implements. User, password, dbname, host, and other information should be supplied in the connection string.
 dbGetInfo(dbObject, …)	Returns dbObject details such ad driver, connection, or resultSet.
 dbSendQuery(con, statement, …) 	Queries one statement to the database.

@@ -46,8 +46,8 @@ tryCatch({
 
   dim(cats)
   colnames(cats)
-  for (cn in 1:15) {
-    print(cats[2, cn])
+  for (cn in 1:ncol(cats)) {
+    print(cats[3, cn])
   }
 
 },
