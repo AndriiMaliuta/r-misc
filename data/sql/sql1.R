@@ -1,8 +1,7 @@
 
-# library(RODBC)
+library(RODBC)
 library(odbc)
 library(RPostgreSQL)
-# library(libpq-fe.h)
 # library(psqlODBC)
 
 # con <- dbConnect(odbc(),
@@ -42,9 +41,11 @@ tryCatch({
   # dbSetDataMappings(rs, flds)
   cats <- fetch(res, n = 3)
 
-  print(row.names(cats))
-  print(colnames(cats))
-  print(cats)
+  # print(row.names(cats))
+  # print(colnames(cats))
+  # print(nrow(cats))
+
+  cats[1, 1]
 
 
 },
