@@ -1,4 +1,3 @@
-
 library(RODBC)
 library(odbc)
 library(RPostgreSQL)
@@ -39,14 +38,17 @@ tryCatch({
   res <- dbSendQuery(conn = connec, "SELECT * FROM cats")
   # flds <- dbColumnInfo(res)
   # dbSetDataMappings(rs, flds)
-  cats <- fetch(res, n = 3)
+  cats <- fetch(res, n = 30)
 
   # print(row.names(cats))
   # print(colnames(cats))
   # print(nrow(cats))
 
-  cats[1, 1]
-
+  dim(cats)
+  colnames(cats)
+  for (cn in 1:15) {
+    print(cats[2, cn])
+  }
 
 },
   error=function(cond) {
