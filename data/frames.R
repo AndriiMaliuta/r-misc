@@ -12,5 +12,3 @@ print(dim(f1))
 
 # print(f1[f1$.b > 2, 3:1])
 print(f1[20,2])
-
-
