@@ -34,4 +34,9 @@ countries <- fromJSON(rawToChar(jsonData$content))
 # print(names(countries))
 # print(dim(countries))
 
-print(countries[1,1]$name$common)
+# print(countries[[1]][1:10])
+print("=============")
+print(countries[c(1,2,3), ])
+# print(countries[1:3, ])
+
+# countries[,2] == countries$b == countries[[2]]

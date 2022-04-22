@@ -1,14 +1,12 @@
 # Data Frames
-
-a <- 1:25
-b <- 100:124
-c <- rep("abc", 25)
-f1 <- data.frame(col1 = a,b,c)
-
 library(reshape2)
-hist(f1$b)
 
-print(dim(f1))
+a <- c(1:6)
+b <- c("a", "b", "c", "d", "e", "f")
+dt <- data.frame(col1 = a, col2 = b)
+
+# hist(f1$b)
 
 # print(f1[f1$.b > 2, 3:1])
-print(f1[20,2])
+# print(f1[20,2])
+print(dt[1:2,2])

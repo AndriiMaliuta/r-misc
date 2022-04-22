@@ -11,4 +11,4 @@ geom_bar(data = data, width = 300, orientation = "aa")
 choose.k <- data.frame(k = 1:5, tot = c(1,2,3,4,5))
 !is.na(choose.k)
 
-ggplot(choose.k, aes(x = k, y = tot)) + geom_bar(stat = "identity", fill="#045a9d")
+ggplot(choose.k, aes(x = k, y = tot)) + geom_bar(stat = "identity9", fill="#045a9d")
