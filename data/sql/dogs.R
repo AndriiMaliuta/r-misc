@@ -1,6 +1,9 @@
 library(RODBC)
 library(odbc)
 library(RPostgreSQL)
+library(ggplot2)
+library(lubridate)
+library(geosphere)
 
 tryCatch({
   drv <- dbDriver("PostgreSQL")
@@ -16,9 +19,9 @@ tryCatch({
   dbListTables(conn = connec)
   res <- dbSendStatement(conn = connec, "SELECT * FROM dogs")
   dogs <- fetch(res = res, n = 5)
-  print(dogs)
-
-
+  print(dogs[,2])
+  ggplot(data = dogs, mapping = aes(x = id, y = age, colour = 'green')) +
+      geom_point() + geom_point(data = dogs, aes(y = age), colour = 'red', size = 3)
 
 
 },

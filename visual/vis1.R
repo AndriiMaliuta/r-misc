@@ -1,5 +1,4 @@
 library(ggplot2)
-# library(zipcode)
 library(lubridate)
 library(geosphere)
 library(stringr)
