@@ -9,12 +9,16 @@ library(jsonlite)
 
 tryCatch({
   wikiLink <- Sys.getenv("ANMA_WIKI")
-  resp <- GET(url = wikiLink, authenticate(user = Sys.getenv("ANMA_MAIL"), password = Sys.getenv("ANMA_TOKEN")),
+  mail <- Sys.getenv("ANMA_MAIL")
+  pswd <- Sys.getenv("ANMA_TOKEN")
+  urlLink <- paste0(wikiLink, "/rest/api/space")
+  resp <- GET(url = urlLink, authenticate(user = mail, password = pswd),
               add_headers("a" = "b"), query = list('expand' = 'homepage'))
   spaceJson <- content(resp, "text")
   spaces <- fromJSON(txt = spaceJson)
   # print(dogsDF$results)
-  print(class(spaces$results$`_expandable`))
+  print(dimnames(spaces$results[1:2,]))
+  # write.csv(x = spaces$results[1:2,], file = "./spaces.csv")
 
   # visualize
   vis1 <- function () {
