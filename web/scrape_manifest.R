@@ -5,13 +5,19 @@ library(httr)
 library(jsonlite)
 library(rvest)
 library(ggplot2)
+library(gridExtra)
+library(grid)
 
 print(Sys.time())
 
 draw_chart <- function (data) {
-  ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
-    geom_point(mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
+  chart1 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
+    geom_point(mapping = aes(x = data$"Підписників", y = data$"Переглядів"))
+
+  chart_2 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
     geom_col(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"))
+
+  grid.arrange(chart1, chart_2)
 }
 
 get_channels <- function (url) {
