@@ -16,8 +16,8 @@ tryCatch({
               add_headers("a" = "b"), query = list('expand' = 'homepage'))
   spaceJson <- content(resp, "text")
   spaces <- fromJSON(txt = spaceJson)
-  # print(dogsDF$results)
-  print(dimnames(spaces$results[1:2,]))
+  # print(dimnames(spaces$results[1,]))
+  print(spaces$results[1:2,])
   # write.csv(x = spaces$results[1:2,], file = "./spaces.csv")
 
   # visualize
