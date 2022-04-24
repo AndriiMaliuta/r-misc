@@ -2,6 +2,7 @@ library(rvest)
 library(dplyr)
 library(httr)
 library(jsonlite)
+library(rvest)
 
 # url <- "https://en.wikipedia.org/wiki/Example.com"
 # ex.ref <- read_html(url)
