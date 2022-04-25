@@ -11,7 +11,7 @@ v <- col1 > 2
 col1[v]
 
 ### CSV
-csvData <- read.csv(file = "../files/libraries_by_python_version.csv")
+csv_data <- read.csv(file = "../files/libraries_by_python_version.csv")
 
 ### XLSX
 # library(xlsx)

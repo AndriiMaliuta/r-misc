@@ -58,6 +58,6 @@ print(dataX)
 # print(f1[20,2])
 # print(dt[1:2,2])
 
-# frame1 <- data.frame(col1 = c(1,2,3,4,5), col2 = c('1','b','c','d'), empty.dump())
+frame1 <- data.frame(col1 = c(1,2,3,4,5), col2 = c('1','b','c','d'), empty.dump())
 
 

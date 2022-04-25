@@ -21,7 +21,7 @@ tryCatch({
                       host = "172.17.0.2",
                       port = 5432,
                       user = "dev",
-                      password = "possum!")
+                      password = "pass")
   print("Database Connected!")
 
   # dbSendQuery(connec, "DROP TABLE IF EXISTS Employees")
