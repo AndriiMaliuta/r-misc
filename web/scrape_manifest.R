@@ -11,13 +11,16 @@ library(grid)
 print(Sys.time())
 
 draw_chart <- function (data) {
-  chart1 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
+  chart1 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"), fill = "red") +
     geom_point(mapping = aes(x = data$"Підписників", y = data$"Переглядів"))
 
-  chart_2 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"), colours(distinct = TRUE)) +
+  chart_2 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"),
+                    fill = "green",
+                    colours(distinct = TRUE)) +
     geom_area(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"))
 
-  chart_3 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"), colours(distinct = TRUE)) +
+  chart_3 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"), fill="#045a9d",
+                    group = 1) +
     geom_boxplot(fill = "#FFDB6D", color = "#C4961A")
 
   # chart_3 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
