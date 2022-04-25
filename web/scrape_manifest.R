@@ -14,10 +14,16 @@ draw_chart <- function (data) {
   chart1 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
     geom_point(mapping = aes(x = data$"Підписників", y = data$"Переглядів"))
 
-  chart_2 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
-    geom_col(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"))
+  chart_2 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"), colours(distinct = TRUE)) +
+    geom_area(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"))
 
-  grid.arrange(chart1, chart_2)
+  chart_3 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"), colours(distinct = TRUE)) +
+    geom_boxplot(fill = "#FFDB6D", color = "#C4961A")
+
+  # chart_3 <- ggplot(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів")) +
+  #   geom_bar(data = data, mapping = aes(x = data$"Підписників", y = data$"Переглядів"))
+
+  grid.arrange(chart1, chart_2, chart_3)
 }
 
 get_channels <- function (url) {
@@ -42,9 +48,11 @@ get_channels <- function (url) {
 
 initial_url <- "https://manifest.in.ua/rt"
 chan_table <- get_channels(initial_url)
-chan_next_url <- "https://manifest.in.ua/rt/page/2"
+for (a in 1:25) {
+  chan_next_url <- paste0("https://manifest.in.ua/rt/page/", a)
+  # append(chan_table, get_channels(chan_next_url), after = length(chan_table))
+  rbind(chan_table, get_channels(chan_next_url))
+}
 
-# append(chan_table, get_channels(chan_next_url), after = length(chan_table))
-rbind(chan_table, get_channels(chan_next_url))
 print(chan_table)
 draw_chart(chan_table[[1]])
