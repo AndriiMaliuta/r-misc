@@ -57,8 +57,13 @@ tryCatch({
 
 
   # visualize
-  ggplot(data = spaces, mapping = aes(x = id, y = key)) +
+  chart_1 <- ggplot(data = all_spaces[[1]], mapping = aes(x = id, y = key)) +
     geom_point(mapping = aes(x = id, y = key))
+
+  chart_2 <- ggplot(data = all_spaces[[2]], mapping = aes(x = id, y = key)) +
+    geom_point(mapping = aes(x = id, y = key))
+
+  grid.arrange(chart_1, chart_2)
 
 }, error = function (err) {
   print(err)
