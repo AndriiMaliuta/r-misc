@@ -18,12 +18,32 @@ tryCatch({
   pswd <- Sys.getenv("ANMA_TOKEN")
   url_link <- paste0(wiki_link, "/rest/api/space")
 
-  get_spaces <- function (sp_link) {
+  get_spaces <- function(sp_link) {
     resp <- GET(url = sp_link, authenticate(user = mail, password = pswd),
                 add_headers("a" = "b"), query = list('expand' = 'homepage'))
     spaceJson <- content(resp, "text")  # get content body from response
     spaces <- fromJSON(txt = spaceJson)
     return(spaces)
+  }
+
+  get_space_pages <- function(space_key) {
+    pages_url <- paste0(wiki_link, "/rest/api/content")
+    resp <- GET(url = pages_url, authenticate(user = mail, password = pswd),
+                query = list('spaceKey' = space_key)) #'expand' = 'body.view',
+    if (resp$status_code == 200) {
+      pages_json <- content(resp, "text")  # get content body from response
+      pages <- fromJSON(txt = pages_json)
+      return(pages)
+    }
+  }
+
+  find_content <- function() {
+    search_url <- paste0(wiki_link, "/rest/api/search")
+    resp <- GET(url = search_url, authenticate(user = mail, password = pswd),
+                query = list('cql' = 'type=page'))
+    content_json <- content(resp, "text")  # get content body from response
+    content <- fromJSON(txt = content_json)
+    return(content)
   }
 
   spaces_resp <- get_spaces(sp_link = url_link)
@@ -35,37 +55,41 @@ tryCatch({
   if (!is.na(next_link)) {
     print(paste0(">> Next link is ", next_link))
     next_spaces_resp <- get_spaces(paste0(wiki_link, next_link))
-    # print(next_spaces_resp)
     # rbind(spaces, next_spaces_resp$results)
     # merge(spaces, next_spaces_resp)
   }
 
-  # print(spaces)
-
   # write_csv(x = keyName, file = "../../files/spaces.csv")
+  # write_excel_csv(x = keyName, file = newFile, append = TRUE)
   file.create("spaces.csv", overwrite = TRUE)
   # write_lines(s, file.path(outfolder, "text-mining-with-r.md"))
   # newFile <- dir.create("spaces.csv")
-  # write_excel_csv(x = keyName, file = newFile, append = TRUE)
-  # write_excel_csv(x = keyName, file = "files/spaces.csv", append = TRUE)
 
-  # spacesNew <- bind_rows(spaces$results %>% filter(key == 'REACT'))
-  # print(spacesNew)
+  # spaces_new <- bind_rows(spaces$results %>% filter(key == 'REACT'))
   all_spaces <- dplyr::lst(spaces, next_spaces_resp$results)
   # all_spaces <- spaces %>% full_join(next_spaces_resp$results)
-  print(all_spaces)
+  # all_pages <- get_space_pages("REACT")
+  # print(all_pages$results)
+
+  for (key in all_spaces[[1]][,3]) {
+    space_pages <- get_space_pages(key)$results
+    if (!is.null(space_pages)) {
+      print(space_pages[, 1])
+    }
+  }
+
 
 
   # visualize
-  chart_1 <- ggplot(data = all_spaces[[1]], mapping = aes(x = id, y = key)) +
+  chart_1 <- ggplot(data = all_spaces[[1]], mapping = aes(x = type, y = key)) +
     geom_point(mapping = aes(x = id, y = key))
 
   chart_2 <- ggplot(data = all_spaces[[2]], mapping = aes(x = id, y = key)) +
-    geom_point(mapping = aes(x = id, y = key))
+    geom_col(mapping = aes(x = id), fill = "green")
 
-  grid.arrange(chart_1, chart_2)
+  grid.arrange(chart_1, chart_2, ncol = 2)
 
-}, error = function (err) {
+}, error = function(err) {
   print(err)
 }
 )

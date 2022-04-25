@@ -1,3 +1,10 @@
+- Vectors
+- Lists
+- Matrices
+- Arrays
+- Factors
+- Data Frames
+
 
 ### psql
 https://hevodata.com/learn/rpostgresql/#step1
