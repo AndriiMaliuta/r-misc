@@ -21,8 +21,8 @@ tryCatch({
   get_spaces <- function(sp_link) {
     resp <- GET(url = sp_link, authenticate(user = mail, password = pswd),
                 add_headers("a" = "b"), query = list('expand' = 'homepage'))
-    spaceJson <- content(resp, "text")  # get content body from response
-    spaces <- fromJSON(txt = spaceJson)
+    space_json <- content(resp, "text")  # get content body from response
+    spaces <- fromJSON(txt = space_json)
     return(spaces)
   }
 

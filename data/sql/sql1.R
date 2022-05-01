@@ -19,7 +19,7 @@ tryCatch({
   connec <- dbConnect(drv,
                       dbname = "cats",
                       host = "172.17.0.2",
-                      port = 5432,
+                      port = 5433,
                       user = "dev",
                       password = "pass")
   print("Database Connected!")
