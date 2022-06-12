@@ -1,3 +1,8 @@
+
+
+/home/andrii/R/x86_64-pc-linux-gnu-library/4.2/00LOCK-fansi/00new/fansi/libs
+
+
 - Vectors
 - Lists
 - Matrices
