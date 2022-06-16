@@ -28,11 +28,11 @@ between(), near()
 
 ```r
  write_csv(x = keyName, file = "../../files/spaces.csv")
- file.create("spaces.csv", overwrite = TRUE)
- write_lines(s, file.path(outfolder, "text-mining-with-r.md"))
- newFile <- dir.create("spaces.csv")
- write_excel_csv(x = keyName, file = newFile, append = TRUE)
- write_excel_csv(x = keyName, file = "spaces.csv", append = TRUE)
+file.create("files/spaces.csv", overwrite = TRUE)
+write_lines(s, file.path(outfolder, "text-mining-with-r.md"))
+newFile <- dir.create("files/spaces.csv")
+write_excel_csv(x = keyName, file = newFile, append = TRUE)
+write_excel_csv(x = keyName, file = "files/spaces.csv", append = TRUE)
 ```
 
 ### Data Types of R – Objects
